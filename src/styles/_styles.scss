@@ -1,0 +1,60 @@
+header {
+	.logo {
+		height: 48px;
+	}
+	.nav {
+		a {
+			color: $body-color;
+			font-weight: 500;
+			&.active {
+				color: $primary;
+			}
+		}
+	}
+	.btn-icon {
+		@include transition(all ease-in 0.2s);
+		&:hover {
+			color: $primary;;
+		}
+	}
+	.cart-count {
+		width: 20px;
+		height: 20px;
+	}
+}
+
+.category-card {
+	overflow: hidden;
+	@include transition(all linear 0.2s);
+	.card-body {
+		svg {
+			width: 24px;
+			height: 24px;
+			fill: $primary;
+		}
+	}
+	&:hover {
+		--bs-card-bg: #{$primary};
+		.card-body {
+			h5 {
+				color: $white;
+			}
+			svg {
+				fill: $white;
+			}
+		}
+	}
+}
+
+.product-card {
+	figure {
+		height: 262px;
+	}
+	img {
+		max-height: 230px;
+	}
+	.card-title {
+		font-size: 16px;
+		font-weight: 600;
+	}
+}
