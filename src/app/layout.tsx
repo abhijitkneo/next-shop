@@ -3,6 +3,7 @@ import '@/styles/global.scss';
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Container } from "react-bootstrap";
+import { SearchProvider } from "@/context/SearchContext";
 
 
 export const metadata: Metadata = {
@@ -26,13 +27,15 @@ export default function RootLayout({
 				/>
 			</head>
 			<body>
-				<Header />
-				<main>
-					<Container>
-						{children}
-					</Container>
-				</main>
-				<Footer />
+				<SearchProvider>
+					<Header />
+					<main>
+						<Container>
+							{children}
+						</Container>
+					</main>
+					<Footer />
+				</SearchProvider>
 			</body>
 		</html>
 	);

@@ -1,5 +1,6 @@
 'use client';
 
+import { useSearch } from '@/context/SearchContext';
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Button, Col, Container, Nav, NavLink, Row } from 'react-bootstrap'
@@ -8,6 +9,7 @@ import { LuSearch, LuShoppingCart } from 'react-icons/lu';
 
 const Header = () => {
     const pathname = usePathname();
+    const { searchTerm, setSearchTerm } = useSearch();
     return (
         <Container className='sticky-top'>
             <header className='bg-white rounded-bottom-3 border border-top-0 p-3'>
@@ -26,6 +28,13 @@ const Header = () => {
                                 </Link> */}
                                 <Link href={'/categories'} className={`nav-link ${pathname.startsWith('/categories') ? 'active': ''}`}>Categories</Link>
                             </Nav>
+                            <input 
+                                type='search'
+                                className='form-control w-50'
+                                placeholder='Search products'
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                            />
                             <div className="hstack gap-3">
                                 <Button variant='transparent' className='p-0 btn-icon'><LuSearch size={24} /></Button>
                                 <Button variant='transparent' className='p-0 btn-icon position-relative'>
