@@ -2,6 +2,7 @@
 import { getProducts } from '@/services/ProductService';
 import { getCategoryIcon } from '@/utils/categoryIcon';
 import { getCategoriesFromProducts } from '@/utils/getCategories';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import { Card, Col, Row, Spinner } from 'react-bootstrap';
 
@@ -21,7 +22,14 @@ const ProductCategories = () => {
 		})
 	}, [])
 
-	console.log(categories);
+	//console.log(categories, '+++ categories listing +++');
+
+	const getCategorySlug = (category : string) => {
+		return category.toLowerCase().replace(/'/g, '').replace(/\s+/g, '-');		
+	}
+
+	//console.log(getCategorySlug(categories[0]));
+
 	
 	
 	return (
@@ -39,7 +47,10 @@ const ProductCategories = () => {
 								<Card className='category-card'>
 									<Card.Body className='d-flex align-items-center justify-content-between'>
 										<h5 className='text-capitalize m-0'>{cat}</h5>
-										{getCategoryIcon(cat)}
+										<span>
+											{getCategoryIcon(cat)}
+											<Link href={`/category/${getCategorySlug(cat)}`} className="stretched-link"></Link>
+										</span>
 									</Card.Body>
 								</Card>
 							</Col>
