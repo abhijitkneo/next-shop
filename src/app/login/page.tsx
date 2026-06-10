@@ -2,7 +2,7 @@
 
 import { useAuth } from "@/context/AuthContext";
 import { loginUser } from "@/services/AuthService";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 //import { SaveToken } from "@/utils/auth";
 import { useState } from "react"
 import { Button } from "react-bootstrap";
@@ -12,6 +12,8 @@ export default function LoginPage() {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const router = useRouter();
+	const searchParams = useSearchParams();
+	const redirect = searchParams.get('redirect') || '/';
 
 	const handleSubmit = async(e:any) => {
 		e.preventDefault();
@@ -23,7 +25,8 @@ export default function LoginPage() {
 			console.log(data, '++++ login data');
 			login(data.token);
 			//SaveToken(data.token);
-			router.push('/');
+			//router.push('/');
+			router.push(redirect);
 		} catch(error) {
 			console.error(error);
 		}

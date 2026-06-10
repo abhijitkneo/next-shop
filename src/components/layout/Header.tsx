@@ -5,6 +5,7 @@ import { useSearch } from '@/context/SearchContext';
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Button, Col, Container, Nav, NavLink, Row } from 'react-bootstrap'
+import { BiLogInCircle, BiLogOutCircle } from 'react-icons/bi';
 import { FiUser } from 'react-icons/fi';
 import { LuSearch, LuShoppingCart } from 'react-icons/lu';
 
@@ -46,13 +47,13 @@ const Header = () => {
                                         3
                                     </span> */}
                                 </Button>
-                                <Button variant='transparent' className='p-0 btn-icon'><FiUser size={24} /></Button>
+                                {/* <Button variant='transparent' className='p-0 btn-icon'><FiUser size={24} /></Button> */}
                                 {
                                     isAuthenticated ? (
-                                        <Button variant='Primary' onClick={logout}>Logout</Button>
+                                        <Button variant='outline-primary' onClick={logout}><BiLogOutCircle size={24} /> Logout</Button>
                                     ) 
                                     :(
-                                        <Button variant='Primary' href='/login'>Login</Button>
+                                        <Button variant='primary' href='/login'><BiLogInCircle size={24} /> Login</Button>
                                     )
                                 }
                             </div>
