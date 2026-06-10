@@ -1,17 +1,28 @@
 'use client';
+import useRequireAuth from '@/hooks/useRequireAuth';
 import { Product } from '@/types'
 import { slugify } from '@/utils/slugify';
 import Link from 'next/link';
 import React from 'react'
-import { Card } from 'react-bootstrap'
+import { Button, Card } from 'react-bootstrap'
 import { BsStarFill } from 'react-icons/bs'
 import { LuExternalLink } from 'react-icons/lu';
+import { RiShoppingCartLine } from 'react-icons/ri';
 
 interface ProductCardProps {
 	product: Product
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
+	const requireAuth = useRequireAuth();
+
+	const handleAddToCart = () => {
+		if(!requireAuth()) {
+			return
+		}
+		console.log('Add to cart', product);
+	}
+
 	return (
 		<>
 		<Card className='product-card'>
@@ -31,7 +42,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
 					</p>
 				</div>
 				<Card.Title className='text-truncate fw-medium'>{product.title}</Card.Title>
-				<h5 className="m-0 fw-bold">$ {product.price}</h5>
+				<hr className='border border-dark border-bottom-0 border-start-0 border-end-0 border-opacity-50' />
+				<div className="d-flex align-items-center justify-content-between">
+					<h5 className="m-0 fw-bold">$ {product.price}</h5>
+					<Button variant='primary' size='sm' className='inline-flex-center gap-2' onClick={handleAddToCart}>
+						<RiShoppingCartLine size={18} /> Add to Cart
+					</Button>
+				</div>
 			</Card.Body>
 		</Card>
 		</>
