@@ -1,5 +1,6 @@
 'use client';
 
+import { useAuth } from '@/context/AuthContext';
 import { useSearch } from '@/context/SearchContext';
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -10,6 +11,8 @@ import { LuSearch, LuShoppingCart } from 'react-icons/lu';
 const Header = () => {
     const pathname = usePathname();
     const { searchTerm, setSearchTerm } = useSearch();
+    const {isAuthenticated, logout} = useAuth();
+    
     return (
         <Container className='sticky-top'>
             <header className='bg-white rounded-bottom-3 border border-top-0 p-3'>
@@ -44,6 +47,14 @@ const Header = () => {
                                     </span> */}
                                 </Button>
                                 <Button variant='transparent' className='p-0 btn-icon'><FiUser size={24} /></Button>
+                                {
+                                    isAuthenticated ? (
+                                        <Button variant='Primary' onClick={logout}>Logout</Button>
+                                    ) 
+                                    :(
+                                        <Button variant='Primary' href='/login'>Login</Button>
+                                    )
+                                }
                             </div>
                         </div>
                     </Col>

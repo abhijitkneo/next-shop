@@ -4,6 +4,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Container } from "react-bootstrap";
 import { SearchProvider } from "@/context/SearchContext";
+import Providers from "@/providers";
 
 
 export const metadata: Metadata = {
@@ -27,15 +28,17 @@ export default function RootLayout({
 				/>
 			</head>
 			<body>
-				<SearchProvider>
-					<Header />
-					<main>
-						<Container>
-							{children}
-						</Container>
-					</main>
-					<Footer />
-				</SearchProvider>
+				<Providers>
+					<SearchProvider>
+						<Header />
+						<main>
+							<Container>
+								{children}
+							</Container>
+						</main>
+						<Footer />
+					</SearchProvider>
+				</Providers>
 			</body>
 		</html>
 	);
