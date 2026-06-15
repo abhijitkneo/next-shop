@@ -15,3 +15,7 @@ body {
 	align-items: center;
 	justify-content: center;
 }
+
+a {
+	@include transition(all linear 0.2s);
+}
