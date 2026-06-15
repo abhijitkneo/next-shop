@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import { Container } from "react-bootstrap";
 import { SearchProvider } from "@/context/SearchContext";
 import Providers from "@/providers";
+import { CartProvider } from "@/context/CartContext";
 
 
 export const metadata: Metadata = {
@@ -29,15 +30,13 @@ export default function RootLayout({
 			</head>
 			<body>
 				<Providers>
-					<SearchProvider>
-						<Header />
-						<main>
-							<Container>
-								{children}
-							</Container>
-						</main>
-						<Footer />
-					</SearchProvider>
+					<Header />
+					<main>
+						<Container>
+							{children}
+						</Container>
+					</main>
+					<Footer />
 				</Providers>
 			</body>
 		</html>

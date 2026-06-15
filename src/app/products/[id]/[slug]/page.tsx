@@ -1,7 +1,6 @@
 import ProductRatings from "@/components/common/ProductRatings";
 import { getProductById } from "@/services/ProductService";
 import { Button, Col, Row } from "react-bootstrap";
-import { IoIosStar } from "react-icons/io";
 
 type Props = {
 	params: Promise<{
@@ -14,7 +13,6 @@ export default async function ProductDetailsPage({params}: Props) {
 	const {id} = await params;
 	const product = await getProductById(id);
 	console.log(product, '+++ single product');
-	
 
 	return (
 		<section className="my-3">
@@ -36,7 +34,9 @@ export default async function ProductDetailsPage({params}: Props) {
 						<hr />
 						<p>{product.description}</p>
 						<h2 className="fw-semibold mb-3">${product.price.toFixed(2)}</h2>
-						<Button type="button" variant="primary">Add to Cart</Button>
+						<div className="d-flex justify-content-between">
+							<Button type="button" variant="primary">Add to Cart</Button>
+						</div>
 					</div>
 				</Col>
 			</Row>

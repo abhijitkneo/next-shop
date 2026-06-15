@@ -1,4 +1,5 @@
 'use client';
+import { useCart } from '@/context/CartContext';
 import useRequireAuth from '@/hooks/useRequireAuth';
 import { Product } from '@/types'
 import { slugify } from '@/utils/slugify';
@@ -15,12 +16,14 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
 	const requireAuth = useRequireAuth();
+	const { addToCart } = useCart();
 
 	const handleAddToCart = () => {
 		if(!requireAuth()) {
 			return
 		}
 		console.log('Add to cart', product);
+		addToCart(product);
 	}
 
 	return (

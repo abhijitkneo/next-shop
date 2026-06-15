@@ -1,6 +1,7 @@
 'use client';
 
 import { useAuth } from '@/context/AuthContext';
+import { useCart } from '@/context/CartContext';
 import { useSearch } from '@/context/SearchContext';
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -13,6 +14,7 @@ const Header = () => {
     const pathname = usePathname();
     const { searchTerm, setSearchTerm } = useSearch();
     const {isAuthenticated, logout} = useAuth();
+    const { getCartCount } = useCart();
     
     return (
         <Container className='sticky-top'>
@@ -41,11 +43,15 @@ const Header = () => {
                             />
                             <div className="hstack gap-3">
                                 <Button variant='transparent' className='p-0 btn-icon'><LuSearch size={24} /></Button>
-                                <Button variant='transparent' className='p-0 btn-icon position-relative'>
+                                <Button variant='transparent' className='p-0 btn-icon position-relative' href='/cart'>
                                     <LuShoppingCart size={24}/>
-                                    {/* <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger small p-0 d-inline-flex align-items-center justify-content-center cart-count mt-n1">
-                                        3
-                                    </span> */}
+                                    {
+                                        getCartCount() > 0 && (
+                                            <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary small p-0 d-inline-flex align-items-center justify-content-center cart-count mt-n1">
+                                                {getCartCount()}
+                                            </span>
+                                        )
+                                    }
                                 </Button>
                                 {/* <Button variant='transparent' className='p-0 btn-icon'><FiUser size={24} /></Button> */}
                                 {
