@@ -79,3 +79,21 @@ header {
 		}
 	}
 }
+
+.product-detail-card {
+	figure {
+		width: 136px;
+		height: 150px;
+	}
+}
+
+.summary-card {
+	top: 90px;
+}
+
+.section-empty-cart {
+	min-height: calc(100vh - 174px);
+	.empty-cart-img {
+		width: 200px;
+	}
+}
